@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/index.css">
 	<!-- firebase  -->
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
@@ -46,18 +49,18 @@
 										<div class="section text-center">
 											<h4 class="mb-4 pb-3">Đăng Ký</h4>
 											<div class="form-group">
-												<input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
+												<input type="text" name="logname" class="form-style" placeholder="Tài khoản" id="usernm" autocomplete="off">
 												<i class="input-icon uil uil-user"></i>
 											</div>	
 											<div class="form-group mt-2">
-												<input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
+												<input type="password" name="logpass" class="form-style" placeholder="Mật khẩu" id="matkhau" autocomplete="off">
 												<i class="input-icon uil uil-at"></i>
 											</div>	
 											<div class="form-group mt-2">
-												<input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
+												<input type="password" name="retypepass" class="form-style" placeholder="Lặp Lại Mật khẩu" id="nhaplai" autocomplete="off">
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
-											<a href="#" class="btn mt-4">Đăng Ký</a>
+											<a href="#" id="dk" class="btn mt-4">Đăng Ký</a>
 				      					</div>
 			      					</div>
 			      				</div>
@@ -73,10 +76,10 @@
 		<div id="resultName"></div>
 		<div class="row">
 			<div class="col-10">
-				<input class="form-control form-style" type="text" name="" id="txtInput">
+				<input class="form-control form-style input-nhap" type="text" name="" id="txtInput">
 			</div>
 			<div class="col-2">
-				<input class="btn btn-info form-style" type="button" name="" id="gui" value="Nhập">
+				<input class="btn btn-info form-style nhap" type="button" name="" id="gui" value="Nhập">
 			</div>
 		</div>
 		<div class="list" id="list">

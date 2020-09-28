@@ -15,7 +15,52 @@ firebase.initializeApp(firebaseConfig);
   
   var db = firebase.firestore();
   
-//   xong pham config => cho firebase biet
+document.getElementById('dk').addEventListener('click',()=>{
+    let username = document.getElementById('usernm').value
+    let password = document.getElementById('matkhau').value
+    let retypepass = document.getElementById('nhaplai').value
+    console.log(username,password,retypepass)
+
+    let isPasswordOK= true;
+    // validate password
+    if(password.length < 0){
+        alert('mời nhập thông tin')
+        isPasswordOK = false
+    }
+    if (password != retypepass){
+        alert('mật khẩu không trùng')
+    }
+    else{
+        db.collection("Learn-Mindx").get()
+        .then((querySnapshot) => {
+
+            let  user = querySnapshot.docs.map(val=>{
+                return val.data()
+            })
+            
+            return user
+
+        })
+        .then((user)=>{
+            console.log(user)
+        })
+        alert('ok')
+    }
+    
+    
+})
+
+// db.collection("Learn-Mindx").doc("2").update({
+//     messages: firebase.firestore.FieldValue.arrayUnion({
+//         password: localStorage.getItem("id"),
+//         username: text.value
+//     })
+// })
+//     .then(() => {
+//         text.value = ""
+//         renderData()
+//         console.log(`Save success`)
+//     })
 
 document.getElementById('btn').addEventListener('click',()=>{
     let username = document.getElementById('usernm').value
@@ -66,66 +111,6 @@ document.getElementById('btn').addEventListener('click',()=>{
 
 })
 
-// const Input = document.getElementById("txtInput")
-// const list = document.querySelector(".list");
-
-// function init() {
-//     document.getElementById("gui").addEventListener("click", () => {
-//         if (Input.value != "") {
-//             new Items(Input.value);
-//             sendMess()
-//             Input.value = "";
-//             Input.focus();
-//         }
-//     })
-// }
-
-// init()
-
-// class Items {
-//     constructor(New_Item) {
-//         this.Create(New_Item);
-//     }
-
-//     Create(New_Item) {
-//         /// create div and add className
-//         let box = document.createElement('div');
-//         box.classList.add('items');
-
-//         // /// create a checkbox and class name
-//         let check = document.createElement('checkbox');
-//         check.innerHTML = '<input type="checkbox" class="check"></input>'
-//         check.classList.add('myCheck');
-
-//         /// create input and another things :)
-//         let input = document.createElement('span');
-//         input.innerHTML = New_Item;
-//         var att = document.createAttribute("contenteditable");
-//         att.value = "true";
-//         input.setAttributeNode(att)
-//         input.classList.add('item_input');
-
-//         /// create button to remove
-//         let removeButton = document.createElement('button');
-//         removeButton.innerHTML = "Delete"
-//         removeButton.classList.add('removeButton')
-
-//         /// thêm một thẻ div vào thẻ list
-//         list.appendChild(box);
-//         /// sau khi tạo thì thêm vào thẻ cần thiết
-//         box.appendChild(check);
-//         box.appendChild(input);
-//         box.appendChild(removeButton);
-
-
-//         removeButton.addEventListener('click', () => this.del(box))
-//     }
-
-//     del(box) {
-//         list.removeChild(box);
-//     }
-
-// }
 
 function renderData() {
     document.getElementById("list").innerHTML = ""
@@ -144,10 +129,14 @@ function renderData() {
             messages.forEach(value => {
                 let temp =
                     `
-                        <div>
-				            <input class="form-style form-control" type="text" name="" id="sua" value="${value.content}">
-                            <button class="btn" id="xoa">Xóa</button>
-                            <button class="btn" id="update">sửa</button>
+                        <div class="thich">
+                            <div class="input-group mb-3">
+				                <input class="input-style form-control" type="text" name="" id="sua" value="${value.content}">
+                                <div class="input-group-prepend">
+                                    <button class=" input-group-text btn xoa" id="xoa">Xóa</button>
+                                    <button class=" input-group-text btn sua" id="update">sửa</button>
+                                </div>
+                            </div>
                         </div>
 
                     `
@@ -180,15 +169,15 @@ function sendMess() {
     }
 }
 
-document.getElementById("xoa").addEventListener("click", () => {
-    delete()
-})
-function delete() {
+// document.getElementById("xoa").addEventListener("click", () => {
+//     delete()
+// })
+// function delete() {
 
-    db.collection("todo").doc("todo").delete().then(function() {
-        console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });
+//     db.collection("todo").doc("todo").delete().then(function() {
+//         console.log("Document successfully deleted!");
+//     }).catch(function(error) {
+//         console.error("Error removing document: ", error);
+//     });
     
-}
+// }
